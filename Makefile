@@ -1,7 +1,9 @@
 CC = gcc
 CFLAGS = -g -Wall -Iinclude
 TARGET = mysh
-SRC = src/main.c src/parser.c
+SRC = src/main.c \
+      src/parser.c \
+      src/executor.c
 OBJ = $(SRC:.c=.o)
 
 all: $(TARGET)

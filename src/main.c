@@ -7,6 +7,7 @@
 #define MAX_INPUT 256
 #define MAX_ARGS 64
 #include "parser.h"
+#include "executor.h"
 
 /*處理 ctrl + C */
 void sigint(int sig){
@@ -38,22 +39,7 @@ int main() {
 			break;
 		}
 
-		/*fork*/
-		pid_t pid = fork();
-		
-		if(pid < 0){
-			perror("fork failed");
-			continue;
-		}
-		if(pid == 0){ //chid
-			/*將目前的child ps Image替換成argv[0]指定的可執行檔*/
-			if(execvp(argv[0], argv) < 0)
-				perror("execvp failed");
-			exit(1);
-		}
-		else { //parent
-			waitpid(pid, NULL, 0);
-		}
+		execute_command(argv);
 	}
 	return 0;
 }
