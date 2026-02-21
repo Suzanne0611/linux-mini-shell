@@ -1,8 +1,7 @@
 CC = gcc
-CFLAGS = -g -Wall
+CFLAGS = -g -Wall -Iinclude
 TARGET = mysh
-INCLUDE = linuc-mini-shell/include
-SRC = src/main.c
+SRC = src/main.c src/parser.c
 OBJ = $(SRC:.c=.o)
 
 all: $(TARGET)
